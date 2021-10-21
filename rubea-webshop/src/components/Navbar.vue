@@ -1,0 +1,145 @@
+<template>
+    <div id="navbar">
+        <div id="logo"></div>
+        <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About"'>
+            <router-link id="link" v-for="(index, i) in routes" :key="i"
+            :style="cssProps"
+            :to= index.route >
+            {{ index.name }} 
+            </router-link>
+        </div>
+        <div class="links" v-if='$route.name === "Admin" || $route.name === "Orders" || $route.name === "Items" || $route.name === "Add"'>
+            <router-link id="admin-link" v-for="(index, i) in admin_routes" :key="i"
+            :style="cssProps"
+            :to= index.route >
+            {{ index.name }}
+            </router-link>
+        </div>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: 'App',
+    data() {
+        return {
+            routes: [
+                {
+                name: 'Home',
+                route: '/'
+                },
+                {
+                name: 'Shop',
+                route: '/shop'
+                },
+                {
+                name: 'About',
+                route: '/about'
+                },
+                {
+                name: 'Admin',
+                route: '/admin'
+                }
+            ],
+            admin_routes: [
+                {
+                name: 'Home',
+                route: '/'
+                },
+                {
+                name: 'Dashboard',
+                route: '/admin'
+                },
+                {
+                name: 'Orders',
+                route: '/orders'
+                },
+                {
+                name: 'Items',
+                route: '/items'
+                },
+                {
+                name: 'Add Item',
+                route: '/add'
+                },
+                {
+                name: 'Logout',
+                route: '/logout'
+                }
+            ],
+
+            navTheme:'', //var for navbar theme in different views
+            pathArray:'/' //var to store current url path name
+        }
+    },
+    methods: {
+        getPath() {
+            this.pathArray = window.location.pathname;
+            if (this.pathArray === '/') {
+                this.navTheme = '#fff'
+            }
+            else {
+                this.navTheme = '#555'
+            }
+            // console.log(this.pathArray);
+            // console.log(this.navTheme);
+            // document.getElementById("link").style.color = this.navTheme; 
+        }
+    },
+    watch: {
+        $route() {
+            this.$nextTick(this.getPath());
+        }   
+    },
+    computed: {
+        cssProps() {
+            return {
+                '--link-color': this.navTheme,
+                '--icon-color': this.navTheme,
+            }
+        }
+    },
+    mounted() {
+       this.$router.onReady(() => this.getPath());
+    },
+}
+
+
+</script>
+
+<style lang="scss" scoped>
+
+#navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    height: 60px;
+    padding: 0 8vw 0 8vw;
+    #logo {
+        display: block;
+        width: 20px;
+        height: 20px;
+        // background-color: var(--color);
+        background-color: #fff;
+    }
+    .links {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+        #link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 16px 0 16px;
+        }
+        #admin-link {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0 16px 0 16px;
+        }
+    }
+}
+
+</style>
