@@ -1,10 +1,10 @@
 <template>
     <router-link :to="route" style="text-decoration: none;">
-        <v-container id="component">
+        <div id="component">
             <button id="square-button" :style="{ 'border-color': theme }">
             <h4 :style="{ 'color': theme }" > {{ btnText }} </h4>
             </button>
-        </v-container>
+        </div>
     </router-link>
 </template>
 

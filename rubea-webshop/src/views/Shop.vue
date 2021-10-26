@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <div class="section">
-        <div>
-            <h1>Shop</h1>
-        </div>
+  <div class="container-fluid">
+    <div class="row section">
+        <h1>Shop</h1>
     </div>
-    <div class="section">
+    <div class="col-sm-12 col-lg-3 section">
         <div v-for="(index, i) in items" :key="i">
-            <div id="item-container">
-                <ItemCard :name="index.name" :type="index.type" :price="index.price" :img="index.img"/>
-            </div>
+            <ItemCard :name="index.name" :type="index.type" :price="index.price" :img="index.img"/>        
         </div>
     </div>
   </div>
@@ -101,36 +97,30 @@ export default {
 <style lang="scss" scoped>
 
 .section {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    
-    min-height: 50vh;
-    width: 100vw;
-    padding: 0 8vw 0 8vw;
-    margin: 0;
-    color: #555;
-    background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
 
-    h1 {
-        text-transform: uppercase;
-        font-size: 64px;
-        font-weight: 300;
-        margin-bottom: 0;
-    }
+  height: 100vh;
+  padding: 0 8vw 0 8vw;
+  margin: 0;
+  color: #555;
 
-    p {
-        font-size: 20px;
-        font-weight: 300;
-        margin-bottom: 32px;
-    }
+  h1 {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 64px;
+  font-weight: 300;
+  margin-bottom: 16px;
+  }
 
-    #item-container {
-        display: flex;
-        justify-content: center;
-        padding: 16px;
-    }
+  p {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
 }
 
 @media screen and (max-width:600px) {

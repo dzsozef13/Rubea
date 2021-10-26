@@ -1,11 +1,7 @@
 <template>
-  <v-container fluid style="max-width: unset; margin:0; padding:0;">
-    <v-row class="section" align="center">
-      <v-col lg="6" sm="12" style="max-width: unset; margin:0; padding:0;">
-        <h1>Dashboard</h1>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div class="section">
+    <h1>Dashboard</h1>
+  </div>
 </template>
 
 <script>
@@ -27,21 +23,26 @@ export default {
 <style lang="scss" scoped>
 
 .section {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+
   height: 100vh;
-  width: 100vw;
   padding: 0 8vw 0 8vw;
   margin: 0;
   color: #555;
-  background-color: #eee;
 
   h1 {
   text-transform: uppercase;
+  text-align: left;
   font-size: 64px;
   font-weight: 300;
   margin-bottom: 16px;
   }
 
   p {
+    text-align: left;
     font-size: 20px;
     font-weight: 300;
     margin-bottom: 32px;
