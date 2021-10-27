@@ -1,20 +1,42 @@
 <template>
   <div class="section">
     <h1>Add Item</h1>
+    <div id="input-section">
+      <input type="text" v-model="name" placeholder="Name">
+      <input type="text" v-model="type" placeholder="Type">
+      <input type="text" v-model="description" placeholder="Description">
+      <input type="number" v-model="price" placeholder="Price">
+      <button @click="uploadItem()" style="margin-top:24px;">Add Item</button>
+    </div>
   </div>
 </template>
 
 <script>
 
 // import Button from '@/components/Button.vue'
+import { dbItemAdd } from '../../firebase'
 
 export default {
   name: 'Add',
   data() {
     return {
+      name: '',
+      type: '',
+      description: '',
+      price: null,
     }
   },
   components: {
+  },
+  methods: {
+    uploadItem() {
+      dbItemAdd.add({
+        name: this.name,
+        type: this.type,
+        description: this.description,
+        price: this.price
+      })
+    }
   }
 }
 
@@ -32,6 +54,11 @@ export default {
   padding: 0 8vw 0 8vw;
   margin: 0;
   color: #555;
+
+  #input-section {
+    display: flex;
+    flex-direction: column;
+  }
 
   h1 {
   text-transform: uppercase;

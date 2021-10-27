@@ -1,10 +1,7 @@
 <template>
-  <div class="container-fluid">
+  <div id="page" class="container">
     <div class="row section">
-        <h1>Shop</h1>
-    </div>
-    <div class="col-sm-12 col-lg-3 section">
-        <div v-for="(index, i) in items" :key="i">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="(index, i) in items" :key="i">
             <ItemCard :name="index.name" :type="index.type" :price="index.price" :img="index.img"/>        
         </div>
     </div>
@@ -16,111 +13,95 @@
 import ItemCard from '@/components/ItemCard.vue'
 
 export default {
-    name: 'Shop',
-        data() {
-            return {
-                items: [
-                    {
-                        id: "a000",
-                        name: "Tulip",
-                        type: "Necklace",
-                        img: "item01.png",
-                        price: 100,
-                        data: [
-                            {
-                                color: ["blue", "purple", "green"],
-                                material: ["copper", "stainless steel", "glass"]
-                            }
-                        ]
-                    },
-                    {
-                        id: "a001",
-                        name: "Lavendel",
-                        type: "Set",
-                        img: "item01.png",
-                        price: 240,
-                        data: [
-                            {
-                                color: ["red", "purple"],
-                                material: ["copper", "glass"]
-                            }
-                        ]
-                    },
-                    {
-                        id: "a001",
-                        name: "Margaret",
-                        type: "Set",
-                        img: "item01.png",
-                        price: 240,
-                        data: [
-                            {
-                                color: ["red", "purple"],
-                                material: ["copper", "glass"]
-                            }
-                        ]
-                    },{
-                        id: "a001",
-                        name: "Lavendel",
-                        type: "Set",
-                        img: "item01.png",
-                        price: 240,
-                        data: [
-                            {
-                                color: ["red", "purple"],
-                                material: ["copper", "glass"]
-                            }
-                        ]
-                    },
-                    {
-                        id: "a001",
-                        name: "Lavendel",
-                        type: "Set",
-                        img: "item01.png",
-                        price: 240,
-                        data: [
-                            {
-                                color: ["red", "purple"],
-                                material: ["copper", "glass"]
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-    components: {
-        ItemCard,
-    }
+name: 'Shop',
+  data() {
+    return {
+      items: [
+                {
+                    id: "a000",
+                    name: "Tulip",
+                    type: "Necklace",
+                    img: "item01.png",
+                    price: 100,
+                    data: [
+                        {
+                            color: ["blue", "purple", "green"],
+                            material: ["copper", "stainless steel", "glass"]
+                        }
+                    ]
+                },
+                {
+                    id: "a001",
+                    name: "Lavendel",
+                    type: "Set",
+                    img: "item01.png",
+                    price: 240,
+                    data: [
+                        {
+                            color: ["red", "purple"],
+                            material: ["copper", "glass"]
+                        }
+                    ]
+                },
+                {
+                    id: "a001",
+                    name: "Margaret",
+                    type: "Set",
+                    img: "item01.png",
+                    price: 240,
+                    data: [
+                        {
+                            color: ["red", "purple"],
+                            material: ["copper", "glass"]
+                        }
+                    ]
+                },{
+                    id: "a001",
+                    name: "Lavendel",
+                    type: "Set",
+                    img: "item01.png",
+                    price: 240,
+                    data: [
+                        {
+                            color: ["red", "purple"],
+                            material: ["copper", "glass"]
+                        }
+                    ]
+                },
+                {
+                    id: "a001",
+                    name: "Lavendel",
+                    type: "Set",
+                    img: "item01.png",
+                    price: 240,
+                    data: [
+                        {
+                            color: ["red", "purple"],
+                            material: ["copper", "glass"]
+                        }
+                    ]
+                }
+        ]
+      }
+  },
+components: {
+  ItemCard,
+}
 }
 
 </script>
 
 <style lang="scss" scoped>
 
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+#page {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 25vh 8vw 0 8vw;
+}
 
-  height: 100vh;
-  padding: 0 8vw 0 8vw;
-  margin: 0;
-  color: #555;
-
-  h1 {
-  text-transform: uppercase;
-  text-align: left;
-  font-size: 64px;
-  font-weight: 300;
-  margin-bottom: 16px;
-  }
-
-  p {
-    text-align: left;
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 32px;
-  }
+.item-container {
+    padding: 24px;
 }
 
 @media screen and (max-width:600px) {
@@ -129,7 +110,7 @@ export default {
 
         #item-container {
         padding: 8px 0 8px 0;
-    }
+        }
     }
 }
 </style>

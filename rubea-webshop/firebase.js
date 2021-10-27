@@ -17,6 +17,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
-export const dbMenuAdd = db.collection('testProducts');
+export const dbItemAdd = db.collection('products');
 
-export var docRef = db.collection("testProducts").doc("a61elX98SfzoI10hy7wd");
+export var docRef = db.collection("products").doc("test");

@@ -1,6 +1,6 @@
 <template>
   <div class="section"> 
-    <h1>Rubea Enamel</h1>
+    <h1>Rubea</h1>
     <p>Shiny enamles straight from a small village in Europe. <br> Text about some thing here, nice.</p>
     <Button btnText="My products" theme="#fff" route="/shop"/>
   </div>
