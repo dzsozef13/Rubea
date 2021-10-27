@@ -21,7 +21,7 @@
 <script>
 
 export default {
-    name: 'App',
+    name: 'Navbar',
     data() {
         return {
             routes: [

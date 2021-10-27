@@ -1,57 +1,96 @@
 <template>
-  <div class="section">
-    <h1>Items</h1>
+  <div id="page" class="container" :key="itemList">
+    <div class="row section">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="item in shopItems" :key="item.id">
+            <ItemAdmin :name="item.name" :type="item.type" :price="item.price" :img="item.img"/> 
+            <button @click="deleteItem(item.id)">X</button>  
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
 
-// import Button from '@/components/Button.vue'
+
+import ItemAdmin from '@/components/ItemAdmin.vue'
+import { dbItemAdd } from '../../firebase'
 
 export default {
-  name: 'Items',
+name: 'Shop',
   data() {
     return {
+      shopItems: [],
+      itemList: ''
     }
   },
-  components: {
-  }
+components: {
+  ItemAdmin
+},
+methods: {
+  deleteItem(id) {
+    dbItemAdd.doc(id).delete().then(function() {
+    }).catch(function(error) {
+    alert("Error removing document: ", error);
+    });
+  },
+  // forceRerender() {
+  //     this.itemList += 1;  
+  //     console.log("refresch?")
+  // }
+},
+created() {
+  dbItemAdd.onSnapshot((querySnapshot) => {
+  querySnapshot.forEach((doc => {
+      var itemData = doc.data();
+      this.shopItems.push({
+      id: doc.id,
+      name: itemData.name,
+      type: itemData.type,
+      description: itemData.description,
+      price: itemData.price
+      })
+    }))
+  })
+  /*
+    dbItemAdd.get().then((querySnapshot) => {
+  querySnapshot.forEach((doc => {
+      var itemData = doc.data();
+      this.shopItems.push({
+      id: doc.id,
+      name: itemData.name,
+      type: itemData.type,
+      description: itemData.description,
+      price: itemData.price
+      })
+  }))
+  })
+  
+  */
+},
 }
 
 </script>
 
 <style lang="scss" scoped>
 
-.section {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
+#page {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+    padding: 25vh 8vw 0 8vw;
+}
 
-  height: 100vh;
-  padding: 0 8vw 0 8vw;
-  margin: 0;
-  color: #555;
-
-  h1 {
-  text-transform: uppercase;
-  text-align: left;
-  font-size: 64px;
-  font-weight: 300;
-  margin-bottom: 16px;
-  }
-
-  p {
-    text-align: left;
-    font-size: 20px;
-    font-weight: 300;
-    margin-bottom: 32px;
-  }
+.item-container {
+    padding: 24px;
 }
 
 @media screen and (max-width:600px) {
-  .section {
-    padding: 0 24px 0 24px;
-  }
+    .section {
+        padding: 0 24px 0 24px;
+
+        #item-container {
+        padding: 8px 0 8px 0;
+        }
+    }
 }
 </style>

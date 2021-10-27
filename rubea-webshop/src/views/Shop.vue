@@ -1,8 +1,8 @@
 <template>
   <div id="page" class="container">
     <div class="row section">
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="(index, i) in items" :key="i">
-            <ItemCard :name="index.name" :type="index.type" :price="index.price" :img="index.img"/>        
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="item in shopItems" :key="item.id">
+            <ItemCard :name="item.name" :type="item.type" :price="item.price" :img="item.img"/>        
         </div>
     </div>
   </div>
@@ -10,83 +10,34 @@
 
 <script>
 
+
 import ItemCard from '@/components/ItemCard.vue'
+import { dbItemAdd } from '../../firebase'
 
 export default {
 name: 'Shop',
   data() {
     return {
-      items: [
-                {
-                    id: "a000",
-                    name: "Tulip",
-                    type: "Necklace",
-                    img: "item01.png",
-                    price: 100,
-                    data: [
-                        {
-                            color: ["blue", "purple", "green"],
-                            material: ["copper", "stainless steel", "glass"]
-                        }
-                    ]
-                },
-                {
-                    id: "a001",
-                    name: "Lavendel",
-                    type: "Set",
-                    img: "item01.png",
-                    price: 240,
-                    data: [
-                        {
-                            color: ["red", "purple"],
-                            material: ["copper", "glass"]
-                        }
-                    ]
-                },
-                {
-                    id: "a001",
-                    name: "Margaret",
-                    type: "Set",
-                    img: "item01.png",
-                    price: 240,
-                    data: [
-                        {
-                            color: ["red", "purple"],
-                            material: ["copper", "glass"]
-                        }
-                    ]
-                },{
-                    id: "a001",
-                    name: "Lavendel",
-                    type: "Set",
-                    img: "item01.png",
-                    price: 240,
-                    data: [
-                        {
-                            color: ["red", "purple"],
-                            material: ["copper", "glass"]
-                        }
-                    ]
-                },
-                {
-                    id: "a001",
-                    name: "Lavendel",
-                    type: "Set",
-                    img: "item01.png",
-                    price: 240,
-                    data: [
-                        {
-                            color: ["red", "purple"],
-                            material: ["copper", "glass"]
-                        }
-                    ]
-                }
-        ]
+      shopItems: []        
       }
   },
 components: {
   ItemCard,
-}
+},
+created() {
+    dbItemAdd.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc => {
+        var itemData = doc.data();
+        this.shopItems.push({
+        id: doc.id,
+        name: itemData.name,
+        type: itemData.type,
+        description: itemData.description,
+        price: itemData.price
+        })
+    }))
+    })
+},
 }
 
 </script>

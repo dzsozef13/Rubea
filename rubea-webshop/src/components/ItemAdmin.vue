@@ -13,7 +13,7 @@
 <script>
 
 export default {
-    name: 'ItemCard',
+    name: 'ItemAdmin',
     props: [
       "name",
       "type",
