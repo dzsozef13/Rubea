@@ -12,7 +12,7 @@
 
 
 import ItemCard from '@/components/ItemCard.vue'
-import { dbItemAdd } from '../../firebase'
+// import { dbItemAdd } from '../../firebase'
 
 export default {
 name: 'Shop',
@@ -24,7 +24,7 @@ name: 'Shop',
 components: {
   ItemCard,
 },
-created() {
+/* created() {
     dbItemAdd.get().then((querySnapshot) => {
     querySnapshot.forEach((doc => {
         var itemData = doc.data();
@@ -37,7 +37,13 @@ created() {
         })
     }))
     })
-},
+}, */
+computed: {
+  shopItems() {
+    return this.$store.getters.getShopItems
+  }
+}
+
 }
 
 </script>
