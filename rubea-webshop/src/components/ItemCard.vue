@@ -39,6 +39,7 @@ export default {
   margin: 0;
   padding: 0;
   width: 100%;
+  min-width: 200px;
   max-width: 300px;
   height: auto;
   background-color: #eee;

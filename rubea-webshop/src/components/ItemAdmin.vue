@@ -3,9 +3,10 @@
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
     <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/>
     <div id="item-details">
-      <h1>{{ name }}</h1>
-      <h2>{{ type }}</h2>
-      <p> {{ price }} DKK </p>
+      <p>{{ name }}</p>
+      <p>{{ type }}</p>
+      <p>status</p>
+      <p> {{ price }} € </p>
     </div>
   </div>
 </template>
@@ -33,38 +34,29 @@ export default {
 <style lang="scss" scoped>
 #card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: left;
-  justify-content: center;
+  justify-content: left;
   margin: 0;
   padding: 0;
   width: 100%;
-  max-width: 300px;
   height: auto;
   background-color: #eee;
 
   #item-preview {
-    height: 200px;
+    height: 64px;
   }
 
   #item-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
     height: auto;
     padding: 16px;
 
-    h1 {
-      font-size: 24px;
-      font-weight: 400;
-      margin-bottom: 0;
-    }
-
-    h2{
-      font-size: 18px;
-      font-weight: 300;
-      margin-bottom: 16px;
-    }
-
     p {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 300;
       margin: 0;
     }

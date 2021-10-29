@@ -1,9 +1,9 @@
 <template>
-  <div id="page" class="container" :key="itemList">
+  <div id="page" class="container">
     <div class="row section">
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="item in shopItems" :key="item.id">
-            <ItemAdmin :name="item.name" :type="item.type" :price="item.price" :img="item.img"/> 
-            <button @click="deleteItem(item.id)">X</button>  
+        <div class="col-12 item-container" v-for="item in shopItems" :key="item.id">
+            <ItemAdmin :name="item.name" :type="item.type" :price="item.price" :img="item.img"/>   
+            <button @click="deleteItem(item.id, item.name)">X</button>       
         </div>
     </div>
   </div>
@@ -11,62 +11,36 @@
 
 <script>
 
-
 import ItemAdmin from '@/components/ItemAdmin.vue'
 import { dbItemAdd } from '../../firebase'
 
 export default {
-name: 'Shop',
+name: 'Items',
   data() {
-    return {
-      shopItems: [],
-      itemList: ''
-    }
+    return {}
   },
 components: {
-  ItemAdmin
+  ItemAdmin,
 },
 methods: {
-  deleteItem(id) {
-    dbItemAdd.doc(id).delete().then(function() {
-    }).catch(function(error) {
-    alert("Error removing document: ", error);
-    });
-  },
-  // forceRerender() {
-  //     this.itemList += 1;  
-  //     console.log("refresch?")
-  // }
+  deleteItem(id, name) {
+    if(confirm("Do you really want to delete " + name + "from the shop?")) {
+      dbItemAdd.doc(id).delete().then(function() {
+      alert(name + "was sucsessfully deleted from the shop.");
+      }).catch(function(error) {
+        alert("Error removing document: ", error);
+      });
+    } 
+  }
+}, 
+beforeCreate() {
+    this.$store.dispatch('setShopItems')
 },
-created() {
-  dbItemAdd.onSnapshot((querySnapshot) => {
-  querySnapshot.forEach((doc => {
-      var itemData = doc.data();
-      this.shopItems.push({
-      id: doc.id,
-      name: itemData.name,
-      type: itemData.type,
-      description: itemData.description,
-      price: itemData.price
-      })
-    }))
-  })
-  /*
-    dbItemAdd.get().then((querySnapshot) => {
-  querySnapshot.forEach((doc => {
-      var itemData = doc.data();
-      this.shopItems.push({
-      id: doc.id,
-      name: itemData.name,
-      type: itemData.type,
-      description: itemData.description,
-      price: itemData.price
-      })
-  }))
-  })
-  
-  */
-},
+computed: {
+  shopItems() {
+    return this.$store.getters.getShopItems
+  }
+}
 }
 
 </script>
@@ -74,14 +48,16 @@ created() {
 <style lang="scss" scoped>
 
 #page {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    padding: 25vh 8vw 0 8vw;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25vh 8vw 0 8vw;
 }
 
 .item-container {
-    padding: 24px;
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
 }
 
 @media screen and (max-width:600px) {

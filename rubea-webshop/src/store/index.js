@@ -1,5 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { dbItemAdd } from '../../firebase'
+
+// import firebase from 'firebase'
+import 'firebase/firestore'
 
 Vue.use(Vuex)
 
@@ -8,22 +12,26 @@ export default new Vuex.Store({
     shopItems: [],
   },
   mutations: {
-    created() {
-      dbItemAdd.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc => {
+    setShopItems: state => {
+      let shopItems = []
+
+      dbItemAdd.onSnapshot((snapshotItems) => {
+        shopItems = []
+        snapshotItems.forEach((doc => {
           var itemData = doc.data();
-          this.shopItems.push({
-          id: doc.id,
-          name: itemData.name,
-          type: itemData.type,
-          description: itemData.description,
-          price: itemData.price
+          shopItems.push({
+            ...itemData,
+            id: doc.id
           })
-      }))
+        }))
+        state.shopItems = shopItems
       })
-    },
+    }
   },
   actions: {
+    setShopItems: context => {
+      context.commit('setShopItems')
+    }
   },
   modules: {
   },

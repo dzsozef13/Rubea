@@ -17,33 +17,19 @@ import ItemCard from '@/components/ItemCard.vue'
 export default {
 name: 'Shop',
   data() {
-    return {
-      shopItems: []        
-      }
+    return {}
   },
 components: {
   ItemCard,
 },
-/* created() {
-    dbItemAdd.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc => {
-        var itemData = doc.data();
-        this.shopItems.push({
-        id: doc.id,
-        name: itemData.name,
-        type: itemData.type,
-        description: itemData.description,
-        price: itemData.price
-        })
-    }))
-    })
-}, */
+beforeCreate() {
+    this.$store.dispatch('setShopItems')
+},
 computed: {
   shopItems() {
     return this.$store.getters.getShopItems
   }
 }
-
 }
 
 </script>
