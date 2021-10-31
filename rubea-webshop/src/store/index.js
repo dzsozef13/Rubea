@@ -10,6 +10,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shopItems: [],
+    itemDetails: {
+      itemName: "name",
+      itemType: "type",
+      itemDescription: "text",
+      itemPrice: "199"
+    }
   },
   mutations: {
     setShopItems: state => {
@@ -37,5 +43,6 @@ export default new Vuex.Store({
   },
   getters: {
     getShopItems: state => state.shopItems,
+    getItemDetails: state => state.itemDetails
   }
 })

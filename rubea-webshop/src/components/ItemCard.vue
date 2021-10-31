@@ -1,4 +1,5 @@
 <template>
+ <router-link to="details" @click.native="pushDetails()">
   <div id="card">
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
     <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/>
@@ -6,8 +7,10 @@
       <h1>{{ name }}</h1>
       <h2>{{ type }}</h2>
       <p> {{ price }} DKK </p>
+      <p> {{ description }} DKK </p>
     </div>
   </div>
+ </router-link>
 </template>
 
 <script>
@@ -17,16 +20,31 @@ export default {
     props: [
       "name",
       "type",
+      "description",
       "price",
       "img",
       "id"
     ],
 
     data() {
-        return {
-        }
+      return {
+      }
+    },
+    methods: {
+      pushDetails() {
+        console.log("hell")
+        this.itemDetails.itemName = this.name;
+        this.itemDetails.itemType = this.type;
+        this.itemDetails.itemDescription = this.description;
+        this.itemDetails.itemPrice = this.price;
+      }
+    },
+    computed: {
+      itemDetails() {
+        return this.$store.getters.getItemDetails;
     }
-};
+  }
+}
 
 </script>
 
