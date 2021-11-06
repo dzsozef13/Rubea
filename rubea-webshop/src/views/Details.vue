@@ -20,18 +20,7 @@ export default {
 
   data() {
     return {
-      idD: "",
       info: ""
-    }
-  },
-  methods: {
-    // debug() {
-    //   console.log(this.$route.params)
-    // },
-  },
-  computed: {
-    setItemDetails() {
-      return this.$store.getters.getItemDetails;
     }
   },
   beforeCreate() {
@@ -52,24 +41,7 @@ export default {
         alert("Error, try again.")
     });
   }
-  // computed: {
-  //   itemDetail() {
-  //     return this.$store.getters.productId(this.$route.params)
-  //     // return 1
-  //   },
-  // },
-  // serverPrefetch() {
-  //   // return the Promise from the action
-  //   // so that the component waits before rendering
-  //   return this.setShopItems();
-  // },
-  // mounted() {
-  //   if (!this.itemDetail) {
-  //     this.$store.dispatch("setShopItems");
-  //   }
-  // },
 }
-
 </script>
 
 <style lang="scss" scoped>

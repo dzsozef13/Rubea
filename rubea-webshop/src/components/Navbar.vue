@@ -1,7 +1,7 @@
 <template>
     <div id="navbar">
         <div id="logo"></div>
-        <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About" || $route.name === "Tracker"'>
+        <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About" || $route.name === "Tracker" || $route.name === "Details"'>
             <router-link id="link" v-for="(index, i) in routes" :key="i"
             :style="cssProps"
             :to= index.route >
