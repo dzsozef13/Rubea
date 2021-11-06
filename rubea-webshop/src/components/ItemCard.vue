@@ -1,14 +1,15 @@
 <template>
- <router-link to="details" @click.native="pushDetails()">
+ <router-link :to="{ name: 'Details', params: { id: item.id } }">
   <div id="card">
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
     <!-- <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/> -->
-    <img id="item-preview" :src="image"/>
+    <img id="item-preview" :src="item.image"/>
     <div id="item-details">
-      <h1>{{ name }}</h1>
-      <h2>{{ type }}</h2>
-      <p> {{ price }} DKK </p>
-      <p> {{ description }} DKK </p>
+      <h1>{{ item.name }}</h1>
+      <h2>{{ item.type }}</h2>
+      <p> {{ item.price }} DKK </p>
+      <p> {{ item.description }} DKK </p>
+      <p> {{ item.id }} </p>
     </div>
   </div>
  </router-link>
@@ -18,13 +19,7 @@
 
 export default {
     name: 'ItemCard',
-    props: [
-      "name",
-      "type",
-      "description",
-      "price",
-      "image"
-    ],
+    props: ["item"],
 
     data() {
       return {
@@ -33,11 +28,11 @@ export default {
     methods: {
       pushDetails() {
         console.log("hell")
-        this.itemDetails.itemName = this.name;
-        this.itemDetails.itemType = this.type;
-        this.itemDetails.itemDescription = this.description;
-        this.itemDetails.itemPrice = this.price;
-        this.itemDetails.itemImage = this.image;
+        // this.itemDetails.itemName = this.name;
+        // this.itemDetails.itemType = this.type;
+        // this.itemDetails.itemDescription = this.description;
+        // this.itemDetails.itemPrice = this.price;
+        // this.itemDetails.itemImage = this.image;
       }
     },
     computed: {

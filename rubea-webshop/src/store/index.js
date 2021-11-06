@@ -10,15 +10,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shopItems: [],
-    itemDetails: {
-      itemName: "name",
-      itemType: "type",
-      itemDescription: "text",
-      itemPrice: "199",
-      itemImage: "url"
-    },
-    orderId: "",
-    orderInfo: []
+    orderId: [],
+    itemDetails: []
   },
   mutations: {
     setShopItems: state => {
@@ -46,8 +39,11 @@ export default new Vuex.Store({
   },
   getters: {
     getShopItems: state => state.shopItems,
-    getItemDetails: state => state.itemDetails,
-    getOrderId: state => state.orderId,
-    getOrderInfo: state => state.orderInfo
+    getItemDetails: state => state.ItemDetails,
+    // getOrderId: state => state.orderId,
+    // getOrderInfo: state => state.orderInfo,
+    productId: (state) => (id) => {
+      return state.shopItems.find((item) => item.id == id);
+    },
   }
 })

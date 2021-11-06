@@ -20,4 +20,4 @@ export const fb = firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 export const dbItemAdd = db.collection('products');
 
-export var docRef = db.collection("products").doc("asd");
+export var docRef = db.collection("products").doc();

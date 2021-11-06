@@ -2,7 +2,7 @@
   <div id="page" class="container">
     <div class="row section">
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 item-container" v-for="item in shopItems" :key="item.id">
-            <ItemCard :name="item.name" :type="item.type" :description="item.description" :price="item.price" :image="item.image"/>        
+            <ItemCard :item="item"/>        
         </div>
     </div>
   </div>

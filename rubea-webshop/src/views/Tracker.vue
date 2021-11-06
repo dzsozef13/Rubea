@@ -3,7 +3,7 @@
     <h1>Track Order</h1>
     <div id="input-section">
       <p>5GRGAII4azFuZ8cqIOG3</p>
-      <input type="text" v-model="id" placeholder="Order ID">
+      <input type="text" v-model="idT" placeholder="Order ID">
       <button @click="checkOrder()" style="margin-top:24px;">Check</button>
       <p> {{ this.info.name }}</p>
     </div>
@@ -17,7 +17,7 @@ export default {
   name: 'Tracker',
   data() {
     return {
-      id: "",
+      idT: "",
       info: ""
     }
   },
@@ -25,9 +25,9 @@ export default {
   },
   methods: {
     checkOrder() {
-      this.orderId = this.id
-      console.log(this.id)
-      var docRef = db.collection("products").doc(this.id);
+      this.orderId = this.idT
+      console.log(this.idT)
+      var docRef = db.collection("products").doc(this.idT);
 
       docRef.get().then((doc) => {
           if (doc.exists) {

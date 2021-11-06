@@ -1,34 +1,73 @@
 <template>
   <div class="section">
-    <img id="image" :src="this.itemDetails.itemImage"/>
-    <h1> {{ this.itemDetails.itemName }} </h1>
-    <p> {{ this.itemDetails.itemType }}  </p>
-    <p> {{ this.itemDetails.itemDescription }} </p>
-    <p> {{ this.itemDetails.itemPrice }} </p>
-    <button @click="debug()">Place Order</button>
+    <img id="image" :src="this.info.image"/>
+    <h1> {{ this.info.name }} </h1>
+    <p> {{ this.info.type }}  </p>
+    <p> {{ this.info.description }} </p>
+    <p> {{ this.info.price }} </p>
+    <button>Place Order</button>
   </div>
 </template>
 
 <script>
-
-// import Button from '@/components/Button.vue'
+import { db } from "../../firebase"
 
 export default {
-  name: 'About',
+  name: 'Details',
+  props: {
+    id: null
+  },
+
   data() {
     return {
+      idD: "",
+      info: ""
     }
   },
   methods: {
-    debug() {
-      console.log(this.itemDetails)
-    }
+    // debug() {
+    //   console.log(this.$route.params)
+    // },
   },
   computed: {
-    itemDetails() {
+    setItemDetails() {
       return this.$store.getters.getItemDetails;
     }
+  },
+  beforeCreate() {
+    console.log(this.$route.params.id)
+    var docRef = db.collection("products").doc(this.$route.params.id);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            this.info = doc.data();
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            alert("This item does not exist.")
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+        alert("Error, try again.")
+    });
   }
+  // computed: {
+  //   itemDetail() {
+  //     return this.$store.getters.productId(this.$route.params)
+  //     // return 1
+  //   },
+  // },
+  // serverPrefetch() {
+  //   // return the Promise from the action
+  //   // so that the component waits before rendering
+  //   return this.setShopItems();
+  // },
+  // mounted() {
+  //   if (!this.itemDetail) {
+  //     this.$store.dispatch("setShopItems");
+  //   }
+  // },
 }
 
 </script>
