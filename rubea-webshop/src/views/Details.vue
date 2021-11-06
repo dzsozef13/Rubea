@@ -1,5 +1,6 @@
 <template>
   <div class="section">
+    <img id="image" :src="this.itemDetails.itemImage"/>
     <h1> {{ this.itemDetails.itemName }} </h1>
     <p> {{ this.itemDetails.itemType }}  </p>
     <p> {{ this.itemDetails.itemDescription }} </p>
@@ -20,7 +21,7 @@ export default {
   },
   methods: {
     debug() {
-      console.log("yea")
+      console.log(this.itemDetails)
     }
   },
   computed: {
@@ -45,12 +46,16 @@ export default {
   margin: 0;
   color: #555;
 
+  #image {
+    width: 300px;
+  }
+
   h1 {
-  text-transform: uppercase;
-  text-align: left;
-  font-size: 64px;
-  font-weight: 300;
-  margin-bottom: 16px;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 64px;
+    font-weight: 300;
+    margin-bottom: 16px;
   }
 
   p {

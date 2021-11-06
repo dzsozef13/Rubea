@@ -14,8 +14,11 @@ export default new Vuex.Store({
       itemName: "name",
       itemType: "type",
       itemDescription: "text",
-      itemPrice: "199"
-    }
+      itemPrice: "199",
+      itemImage: "url"
+    },
+    orderId: "",
+    orderInfo: []
   },
   mutations: {
     setShopItems: state => {
@@ -43,6 +46,8 @@ export default new Vuex.Store({
   },
   getters: {
     getShopItems: state => state.shopItems,
-    getItemDetails: state => state.itemDetails
+    getItemDetails: state => state.itemDetails,
+    getOrderId: state => state.orderId,
+    getOrderInfo: state => state.orderInfo
   }
 })

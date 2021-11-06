@@ -1,7 +1,8 @@
 <template>
   <div id="card">
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
-    <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/>
+    <!-- <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/> -->
+    <img id="item-preview" :src="image"/>
     <div id="item-details">
       <p>{{ name }}</p>
       <p>{{ type }}</p>
@@ -19,8 +20,7 @@ export default {
       "name",
       "type",
       "price",
-      "img",
-      "id"
+      "image"
     ],
 
     data() {

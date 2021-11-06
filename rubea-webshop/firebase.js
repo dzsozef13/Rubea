@@ -1,6 +1,7 @@
 import firebase from '@firebase/app'
 import '@firebase/firestore'
 import '@firebase/auth'
+import '@firebase/storage'
 
 
 const firebaseConfig = {
@@ -14,9 +15,9 @@ const firebaseConfig = {
   measurementId: "G-G7HQ0GXBYQ"
 };
 
-firebase.initializeApp(firebaseConfig);
+export const fb = firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 export const dbItemAdd = db.collection('products');
 
-export var docRef = db.collection("products").doc("test");
+export var docRef = db.collection("products").doc("asd");

@@ -1,7 +1,7 @@
 <template>
     <div id="navbar">
         <div id="logo"></div>
-        <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About"'>
+        <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About" || $route.name === "Tracker"'>
             <router-link id="link" v-for="(index, i) in routes" :key="i"
             :style="cssProps"
             :to= index.route >
@@ -36,6 +36,10 @@ export default {
                 {
                 name: 'About',
                 route: '/about'
+                },
+                {
+                name: 'Track Order',
+                route: '/tracker'
                 },
                 {
                 name: 'Admin',
@@ -96,7 +100,6 @@ export default {
         cssProps() {
             return {
                 '--link-color': this.navTheme,
-                '--icon-color': this.navTheme,
             }
         }
     },
@@ -122,8 +125,8 @@ export default {
         display: block;
         width: 20px;
         height: 20px;
-        // background-color: var(--color);
-        background-color: #fff;
+        background-color: var(--link-color);
+        background-color: #eee;
     }
     .links {
         display: flex;

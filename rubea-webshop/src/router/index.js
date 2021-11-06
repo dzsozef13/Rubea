@@ -29,6 +29,11 @@ const routes = [
     component: () => import('../views/Details.vue')
   },
   {
+    path: '/tracker',
+    name: 'Tracker',
+    component: () => import('../views/Tracker.vue')
+  },
+  {
     path: '/admin',
     name: 'Admin',
     meta: {

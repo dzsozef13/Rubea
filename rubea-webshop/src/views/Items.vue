@@ -2,7 +2,7 @@
   <div id="page" class="container">
     <div class="row section">
         <div class="col-12 item-container" v-for="item in shopItems" :key="item.id">
-            <ItemAdmin :name="item.name" :type="item.type" :price="item.price" :img="item.img"/>   
+            <ItemAdmin :name="item.name" :type="item.type" :price="item.price" :image="item.image"/>   
             <button @click="deleteItem(item.id, item.name)">X</button>       
         </div>
     </div>

@@ -2,7 +2,8 @@
  <router-link to="details" @click.native="pushDetails()">
   <div id="card">
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
-    <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/>
+    <!-- <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/> -->
+    <img id="item-preview" :src="image"/>
     <div id="item-details">
       <h1>{{ name }}</h1>
       <h2>{{ type }}</h2>
@@ -22,8 +23,7 @@ export default {
       "type",
       "description",
       "price",
-      "img",
-      "id"
+      "image"
     ],
 
     data() {
@@ -37,6 +37,7 @@ export default {
         this.itemDetails.itemType = this.type;
         this.itemDetails.itemDescription = this.description;
         this.itemDetails.itemPrice = this.price;
+        this.itemDetails.itemImage = this.image;
       }
     },
     computed: {

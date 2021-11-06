@@ -6,7 +6,8 @@
       <input type="text" v-model="type" placeholder="Type">
       <input type="text" v-model="description" placeholder="Description">
       <input type="number" v-model="price" placeholder="Price">
-      <button @click="uploadItem()" style="margin-top:24px;">Add Item</button>
+      <input type="file" @change="uploadImage">
+      <button @click="uploadItem" style="margin-top:24px;">Add Item</button>
     </div>
   </div>
 </template>
@@ -14,7 +15,7 @@
 <script>
 
 // import Button from '@/components/Button.vue'
-import { dbItemAdd } from '../../firebase'
+import { dbItemAdd, fb } from '../../firebase'
 
 export default {
   name: 'Add',
@@ -24,18 +25,47 @@ export default {
       type: '',
       description: '',
       price: null,
+      image: null
     }
   },
   components: {
   },
   methods: {
     uploadItem() {
-      dbItemAdd.add({
-        name: this.name,
-        type: this.type,
-        description: this.description,
-        price: this.price
-      })
+      if (this.image != null) {
+        dbItemAdd.add({
+          name: this.name,
+          type: this.type,
+          description: this.description,
+          price: this.price,
+          image: this.image
+        })
+        this.$router.push("items") //takes back to items overview
+      }
+      else {
+        alert("You must upload an image first.")
+      }
+    },
+    uploadImage(e) {
+      let file = e.target.files[0]
+      console.log(e.target.files[0])
+      var storageRef = fb.storage().ref('products/'+ file.name);
+      let uploadTask = storageRef.put(file)
+      console.log(uploadTask)
+
+      uploadTask.on('state_changed', (snapshot) => {
+        console.log(snapshot);
+      },
+      (error) => {
+        console.log(error);
+      }, 
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+          this.image = downloadURL
+          console.log('File available at', downloadURL);
+        });
+      }
+    );
     }
   }
 }
