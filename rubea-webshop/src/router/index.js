@@ -14,6 +14,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/nav',
+    name: 'Nav',
+    component: () => import('../views/Nav.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import('../views/About.vue')
@@ -27,6 +32,16 @@ const routes = [
     path: '/details/:id',
     name: 'Details',
     component: () => import('../views/Details.vue')
+  },
+  {
+    path: '/order/:id',
+    name: 'Order',
+    component: () => import('../views/Order.vue')
+  },
+  {
+    path: '/thankyou/:id',
+    name: 'Thankyou',
+    component: () => import('../views/Thankyou.vue')
   },
   {
     path: '/tracker',
@@ -69,11 +84,6 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue')
-  },
-  {
-    path: '/logout',
-    name: 'Logout',
-    component: () => import('../views/Logout.vue')
   }
 ]
 

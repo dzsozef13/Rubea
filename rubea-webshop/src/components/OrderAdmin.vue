@@ -2,11 +2,12 @@
   <div id="card">
     <!-- <img id="item-preview" :src="require(`@/assets/items/${img}`)"/> -->
     <!-- <img id="item-preview" :src="require(`@/assets/items/item01.png`)"/> -->
-    <img id="item-preview" :src="image"/>
+    <img id="item-preview" :src="item.image"/>
     <div id="item-details">
-      <p>{{ name }}</p>
-      <p>{{ type }}</p>
-      <p> {{ price }} €</p>
+      <p>{{ costumer }}</p>
+      <p>{{ email }}</p>
+      <p>{{ item.price }} €</p>
+      <!-- <p>{{ item.status }}</p> -->
     </div>
   </div>
 </template>
@@ -14,12 +15,11 @@
 <script>
 
 export default {
-    name: 'ItemAdmin',
-    props: ["name", "type", "price", "status", "image"],
+    name: 'OrderAdmin',
+    props: ["costumer", "image", "email", "item"],
 
     data() {
-        return {
-        }
+        return {}
     }
 };
 

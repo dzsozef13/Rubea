@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { dbItemAdd } from '../../firebase'
+import { dbOrderAdd } from '../../firebase'
+
 
 // import firebase from 'firebase'
 import 'firebase/firestore'
@@ -10,8 +12,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     shopItems: [],
-    orderId: [],
-    itemDetails: []
+    orderItems: [],
   },
   mutations: {
     setShopItems: state => {
@@ -28,22 +29,37 @@ export default new Vuex.Store({
         }))
         state.shopItems = shopItems
       })
+    },
+    setOrderItems: state => {
+      let orderItems = []
+
+      dbOrderAdd.onSnapshot((snapshotItems) => {
+        orderItems = []
+        snapshotItems.forEach((doc => {
+          var orderData = doc.data();
+          orderItems.push({
+            ...orderData,
+            id: doc.id
+          })
+        }))
+        state.orderItems = orderItems
+      })
     }
   },
   actions: {
     setShopItems: context => {
       context.commit('setShopItems')
+    },
+    setOrderItems: context => {
+      context.commit('setOrderItems')
     }
   },
   modules: {
   },
   getters: {
     getShopItems: state => state.shopItems,
-    getItemDetails: state => state.ItemDetails,
+    getOrderItems: state => state.orderItems,
     // getOrderId: state => state.orderId,
-    // getOrderInfo: state => state.orderInfo,
-    productId: (state) => (id) => {
-      return state.shopItems.find((item) => item.id == id);
-    },
+    // getOrderInfo: state => state.orderInfo
   }
 })

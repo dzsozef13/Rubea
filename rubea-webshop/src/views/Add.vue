@@ -6,6 +6,7 @@
       <input type="text" v-model="type" placeholder="Type">
       <input type="text" v-model="description" placeholder="Description">
       <input type="number" v-model="price" placeholder="Price">
+      <!-- <input type="text" v-model="status" placeholder="Status"> -->
       <input type="file" @change="uploadImage">
       <button @click="uploadItem" style="margin-top:24px;">Add Item</button>
     </div>
@@ -25,6 +26,7 @@ export default {
       type: '',
       description: '',
       price: null,
+      status: "",
       image: null
     }
   },
@@ -38,6 +40,7 @@ export default {
           type: this.type,
           description: this.description,
           price: this.price,
+          status: this.status,
           image: this.image
         })
         this.$router.push("items") //takes back to items overview

@@ -1,6 +1,8 @@
 <template>
     <div id="navbar">
-        <div id="logo"></div>
+        <router-link id="logo-light" v-if='$route.name === "Home"' to="/"></router-link>
+        <router-link id="logo-dark" v-if='$route.name !== "Home"' to="/"></router-link>
+
         <div class="links" v-if='$route.name === "Home" || $route.name === "Shop" || $route.name === "About" || $route.name === "Tracker" || $route.name === "Details"'>
             <router-link id="link" v-for="(index, i) in routes" :key="i"
             :style="cssProps"
@@ -19,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
     name: 'Navbar',
     data() {
@@ -41,10 +42,10 @@ export default {
                 name: 'Track Order',
                 route: '/tracker'
                 },
-                {
-                name: 'Admin',
-                route: '/admin'
-                }
+                // {
+                // name: 'Admin',
+                // route: '/admin'
+                // }
             ],
             admin_routes: [
                 {
@@ -66,10 +67,6 @@ export default {
                 {
                 name: 'Add Item',
                 route: '/add'
-                },
-                {
-                name: 'Logout',
-                route: '/logout'
                 }
             ],
 
@@ -107,31 +104,38 @@ export default {
        this.$router.onReady(() => this.getPath());
     },
 }
-
-
 </script>
 
 <style lang="scss" scoped>
-
 #navbar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    height: 60px;
+    height: 128px;
     padding: 0 8vw 0 8vw;
-    #logo {
+    #logo-light {
         display: block;
-        width: 20px;
-        height: 20px;
-        background-color: var(--link-color);
-        background-color: #eee;
+        width: 36px;
+        height: 36px;
+        background-image: url('../assets/rubea_webshop_logo_white.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    #logo-dark {
+        display: block;
+        width: 36px;
+        height: 36px;
+        background-image: url('../assets/rubea_webshop_logo_dark.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
     }
     .links {
         display: flex;
         justify-content: space-between;
         width: auto;
+        padding-left: 64px;
         #link {
             color: var(--link-color);
             text-decoration: none;
@@ -144,5 +148,4 @@ export default {
         }
     }
 }
-
 </style>
