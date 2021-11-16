@@ -147,7 +147,8 @@ p {
     padding: 0 24px 0 24px;
   }
   .section-row {
-    padding: 0 24px 0 24px;
+    height: max-content;
+    padding: 64px 24px 20vh 24px;
     flex-direction: column;
   }
   .img {

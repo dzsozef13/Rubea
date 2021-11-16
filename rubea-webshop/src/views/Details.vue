@@ -119,7 +119,7 @@ export default {
       justify-content: flex-end;
       width: 100%;
       height: max-content;
-      margin-bottom: 64px;
+      margin: 64px 0 64px 0;
       h1 {
         text-transform: uppercase;
         text-align: left;

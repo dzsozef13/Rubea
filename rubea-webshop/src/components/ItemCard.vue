@@ -49,13 +49,14 @@ export default {
   background-color: #eee;
 
   #item-preview {
-    height: auto;
+    max-height: 250px;
   }
 
   #item-details {
     height: auto;
     padding: 16px;
     text-align: left;
+    align-items: center;
 
     h1 {
       font-size: 24px;
