@@ -19,7 +19,7 @@
       <img class="img" :src="require('@/assets/procd.jpg')" alt="">
       <div>
         <p>I bend copper, crush glass and burn. <br> The result of my work is a shiny enamel, that is special to its owner. </p>
-        <p>You may have an idea for your own enamel. <br> Contact me and see if we can create it together! </p>
+        <p>You may have an idea for your own enamel. Contact me and see if we can create it together! </p>
         <Button btnText="About me" theme="#444" route="/about"/>
       </div>
     </div>
@@ -27,7 +27,7 @@
       <img class="img" :src="require('@/assets/procd.jpg')" alt="">
       <div>
         <p>I bend copper, crush glass and burn. <br> The result of my work is a shiny enamel, that is special to its owner. </p>
-        <p>You may have an idea for your own enamel. <br> Contact me and see if we can create it together! </p>
+        <p>You may have an idea for your own enamel. Contact me and see if we can create it together! </p>
         <Button btnText="About me" theme="#444" route="/about"/>
       </div>
     </div>
@@ -35,7 +35,7 @@
       <img class="img" :src="require('@/assets/procd.jpg')" alt="">
       <div>
         <p>I bend copper, crush glass and burn. <br> The result of my work is a shiny enamel, that is special to its owner. </p>
-        <p>You may have an idea for your own enamel. <br> Contact me and see if we can create it together! </p>
+        <p>You may have an idea for your own enamel. Contact me and see if we can create it together! </p>
         <Button btnText="About me" theme="#444" route="/about"/>
       </div>
     </div>

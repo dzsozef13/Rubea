@@ -44,9 +44,10 @@ export default {
   #item-details {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     width: 50%;
-    height: auto;
+    height: 100%;
     padding: 16px;
 
     p {

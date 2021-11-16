@@ -8,14 +8,15 @@
       <input type="number" v-model="price" placeholder="Price">
       <!-- <input type="text" v-model="status" placeholder="Status"> -->
       <input type="file" @change="uploadImage">
-      <button @click="uploadItem" style="margin-top:24px;">Add Item</button>
+      <!-- <button @click="uploadItem" style="margin-top:24px;">Add Item</button> -->
     </div>
+    <Button @click.native="uploadItem()" btnText="Add Item" theme="#555" route=""/>
   </div>
 </template>
 
 <script>
 
-// import Button from '@/components/Button.vue'
+import Button from '@/components/Button.vue'
 import { dbItemAdd, fb } from '../../firebase'
 
 export default {
@@ -31,10 +32,11 @@ export default {
     }
   },
   components: {
+    Button
   },
   methods: {
     uploadItem() {
-      if (this.image != null) {
+      if (this.image != null && this.name != "" && this.type != "") {
         dbItemAdd.add({
           name: this.name,
           type: this.type,
@@ -46,7 +48,7 @@ export default {
         this.$router.push("items") //takes back to items overview
       }
       else {
-        alert("You must upload an image first.")
+        alert("You must enter the information first.")
       }
     },
     uploadImage(e) {
@@ -91,6 +93,7 @@ export default {
   #input-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 64px;
   }
 
   h1 {

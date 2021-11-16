@@ -63,7 +63,7 @@ export default {
 h1 {
   text-transform: uppercase;
   text-align: left;
-  font-size: 64px;
+  font-size: 32px;
   font-weight: 300;
   margin-bottom: 16px;
 }

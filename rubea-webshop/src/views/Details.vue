@@ -92,7 +92,7 @@ export default {
       #detail {
         display: flex;
         flex-direction: column;
-        padding: 16px;
+        padding: 24px 24px 0 24px;
       }
     }
     #image {
