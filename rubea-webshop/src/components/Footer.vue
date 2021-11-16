@@ -45,8 +45,7 @@ export default {
         background-repeat: no-repeat;
     }
     #login {
-        color: white;
-        opacity: 10%;
+        color: #666;
         text-decoration: none;
         padding: 0 16px 0 16px;
     }

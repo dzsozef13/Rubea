@@ -55,7 +55,7 @@ export default {
             color: var(--button-color);
         }
         &:hover {
-            opacity: 75%;
+            opacity: 0.5; //does not work in safari :(
         }
     }
 }
