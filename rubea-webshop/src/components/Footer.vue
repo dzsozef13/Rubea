@@ -46,7 +46,7 @@ export default {
     }
     #login {
         color: white;
-        opacity: 5%;
+        opacity: 10%;
         text-decoration: none;
         padding: 0 16px 0 16px;
     }
